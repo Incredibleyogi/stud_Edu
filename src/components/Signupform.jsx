@@ -1,5 +1,5 @@
 import React from 'react'
-import {AiOutLineEye, AiOutlineEyeInvisible} from 'react-icons/ai'
+import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai'
 import { useState } from 'react';
 
 const Signupform = ({set}) => {
