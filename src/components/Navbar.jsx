@@ -1,61 +1,67 @@
 import { Link } from 'react-router-dom'
 import Logo from '../assets/Logo.png' 
-import {toast} from 'react-hot-toast'
+import { toast } from 'react-hot-toast'
 import React from 'react'
+
 const Navbar = (props) => { 
-  let isLoggedIn = props.isLoggedIn;
-  let setIsLoggedIn = props.setIsLoggedIn;
+  const { isLoggedIn, setIsLoggedIn } = props;
+
   return (
-    <div className='flex justify-evenly'>
-    <div className="flex-shrink-0">
-      <Link to="/">
-      <img src={Logo} alt="k" width={100} height={15} loading='lazy'/>
-      </Link>
+    <div className="flex items-center justify-between px-6 py-4 bg-gray-900 text-white shadow-md">
+      
+      {/* Logo */}
+      <div className="flex items-center space-x-2">
+        <Link to="/">
+          <img src={Logo} alt="Logo" className="w-28 h-auto" loading="lazy" />
+        </Link>
       </div>
 
-      <nav >
-        <ul className='flex gap-3'>
-          <li>
-          <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/">Contact</Link>
-          </li>
-          <li>
-            <Link to="/">About</Link>
-          </li>
-        </ul>
+      {/* Navigation Links */}
+      <nav className="hidden md:flex space-x-6 text-sm font-medium">
+        <Link to="/" className="hover:text-yellow-400 transition">Home</Link>
+        <Link to="/" className="hover:text-yellow-400 transition">Contact</Link>
+        <Link to="/" className="hover:text-yellow-400 transition">About</Link>
       </nav>
 
-              <div  className='flex ml-5 mr-3 gap-3'>
-                { !isLoggedIn &&
-                  <Link to="/login">
-                    <button>login</button>
-                  </Link>
-                }
-                  { !isLoggedIn &&
-                  <Link to="/signup">
-                    <button onClick={()=>{
-                      setIsLoggedIn(false);
-                      toast.success("logged out");
-                  }}>sign up</button>
-                  </Link>
-                }
-                  { isLoggedIn &&
-                  <Link to="/">
-                    <button onClick={()=>{
-                      setIsLoggedIn(false);
-                      toast.success("logged out");
-                    }}>log out</button>
-                  </Link>
-                }
-                 {  isLoggedIn &&
-                  <Link to="/dashboard">
-                    <button>Dashboard</button>
-                  </Link>
-                }
-                 
-              </div>
+      {/* Auth Buttons */}
+      <div className="flex items-center space-x-3">
+        { !isLoggedIn && (
+          <>
+            <Link to="/login">
+              <button className="bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-300 transition">Login</button>
+            </Link>
+            <Link to="/signup">
+              <button 
+                onClick={() => setIsLoggedIn(false)}
+                className="border border-yellow-400 text-yellow-400 px-4 py-1 rounded hover:bg-yellow-400 hover:text-black transition"
+              >
+                Sign Up
+              </button>
+            </Link>
+          </>
+        )}
+
+        { isLoggedIn && (
+          <>
+            <Link to="/">
+              <button 
+                onClick={() => {
+                  setIsLoggedIn(false);
+                  toast.success("Logged out");
+                }}
+                className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition"
+              >
+                Log Out
+              </button>
+            </Link>
+            <Link to="/dashboard">
+              <button className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 transition">
+                Dashboard
+              </button>
+            </Link>
+          </>
+        )}
+      </div>
     </div>
   )
 }
