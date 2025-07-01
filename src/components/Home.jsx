@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './Home.css';
 import codeImg from '../assets/code.jpg'
 import { Bar } from 'react-chartjs-2'
+import Footer from '../components/Footer'; 
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -131,8 +132,9 @@ const Home = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </section>
-
+       
     </div>
   )
 }

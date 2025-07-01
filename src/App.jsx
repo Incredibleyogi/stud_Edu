@@ -4,7 +4,9 @@ import Signup from './components/Signup'
 import Dashboard from './components/Dashboard'
 import Login from './components/Login'
 import Home from './components/Home'
+import About from './components/About'
 import { useState } from 'react'
+import Footer from './components/Footer';
 
 function App() {
   const[isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,6 +19,8 @@ function App() {
             <Route path="login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
    <Route path="signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />} />
          <Route path="dashboard" element ={<Dashboard/>}/>
+         <Route path="/about" element={<About />} />
+          
       </Routes>
     </div>
   )
